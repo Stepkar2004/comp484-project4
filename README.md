@@ -17,7 +17,7 @@ A location-based quiz game where players must identify specific buildings on the
 ## Locations
 The game randomly selects **5 rounds** per session. **Citrus Hall** is always included, along with 4 others from this list:
 *   Citrus Hall
-*   University Library (Oviatt)
+*   University Library 
 *   Sequoia Hall
 *   Sierra Hall
 *   Eucalyptus Hall
