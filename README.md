@@ -3,7 +3,7 @@
 A location-based quiz game where players must identify specific buildings on the CSUN campus using a custom Google Maps interface.
 
 ## Live Demo
-**[Insert Your GitHub Pages Link Here]**
+**[https://stepkar2004.github.io/comp484-project4/](https://stepkar2004.github.io/comp484-project4/)**
 
 ## How to Play
 1.  **Launch the Game**: Open the link or `index.html` file.
