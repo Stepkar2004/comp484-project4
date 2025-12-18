@@ -8,7 +8,7 @@ A location-based quiz game where players must identify specific buildings on the
 ## How to Play
 1.  **Launch the Game**: Open the link or `index.html` file.
 2.  **Enter API Key**: You will be prompted to enter a valid **Google Maps Javascript API Key**. 
-    *   *Note: The key is stored locally in your browser so you don't have to re-enter it constantly.*
+    *   *Note: The key is stored locally in your browser so you don't have to re-enter it constantly. (But you can click reset API key to remove it)*
 3.  **Start Browsing**: The map labels (street names, buildings) are hidden. You must rely on the map layout.
 4.  **Find Locations**: The game will ask you to find a specific building.
 5.  **Guess**: Double-click on the map where you think the building is.
