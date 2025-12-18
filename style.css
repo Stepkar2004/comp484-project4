@@ -1,0 +1,269 @@
+/* 
+   Reset and Basic Setup 
+   We use flexbox on the body to create a split-screen layout 
+   that takes up the full browser window (100% width/height).
+*/
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    /* Flexbox for split layout */
+    overflow: hidden;
+    /* Prevent scrollbars on body */
+}
+
+/* Sidebar Container */
+/* 
+   Left Sidebar Styling
+   Fixed width of 350px with a subtle shadow to separate it from the map.
+   Contains the game UI.
+*/
+#ui-container {
+    width: 350px;
+    background: #f9f9f9;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.ui-header {
+    padding: 20px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.ui-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    /* Allow scrolling for history if it gets long */
+}
+
+/* Map Container */
+#map {
+    flex-grow: 1;
+    /* Takes remaining space */
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #d22030;
+    margin-bottom: 10px;
+}
+
+.stat-box {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+#target-section {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+#target-location {
+    color: #d22030;
+    font-size: 1.2em;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Game Log / History */
+#game-log {
+    margin-top: 20px;
+}
+
+.log-entry {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    border-left: 4px solid #ccc;
+    background: white;
+}
+
+.log-entry.correct {
+    border-left-color: #4CAF50;
+    background-color: #e8f5e9;
+}
+
+.log-entry.wrong {
+    border-left-color: #F44336;
+    background-color: #ffebee;
+}
+
+/* Non-blocking Feedback Modal (Top Right) */
+#feedback-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: auto;
+    /* Unset left */
+    transform: none;
+    /* Unset center translate */
+    background: white;
+    padding: 20px;
+    z-index: 100;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 250px;
+    display: none;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/*
+   Feedback Modal (Correct/Wrong)
+   Positioned absolutely in the top-right corner to be non-intrusive.
+   Changes color based on the result.
+*/
+#feedback-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 100;
+    text-align: center;
+    width: 250px;
+    border-left: 5px solid #ccc;
+}
+
+/* Color indicators for feedback */
+#feedback-modal.correct {
+    border-left-color: #28a745;
+}
+
+#feedback-modal.wrong {
+    border-left-color: #dc3545;
+}
+
+/* API Key Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/*
+   Center Screen Modal (for API Key)
+*/
+.modal.center-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    text-align: center;
+    width: 300px;
+}
+
+/* Buttons and Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #d22030;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #b01c29;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+
+    /* Stack elements vertically on mobile */
+    body,
+    html {
+        flex-direction: column;
+    }
+
+    #ui-container {
+        width: 100%;
+        height: auto;
+        /* Let content dictate height */
+        max-height: 40vh;
+        /* Limit height so map is still visible */
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        order: 2;
+        /* Put controls below map (optional, or remove to keep at top) */
+    }
+
+    /* Adjust Map to take remaining space */
+    #map {
+        height: 60vh;
+        width: 100%;
+    }
+
+    /* Modal adjustments for mobile */
+    .modal.center-screen {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #feedback-modal {
+        top: 10px;
+        right: 50%;
+        transform: translateX(50%);
+        /* Center horizontally */
+        width: 90%;
+        max-width: 300px;
+    }
+}

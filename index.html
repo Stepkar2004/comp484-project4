@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSUN Map Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <!-- API Key Modal -->
+    <div id="api-key-backdrop" class="modal-backdrop" style="display:none;"></div>
+    <div id="api-key-modal" class="modal center-screen" style="display:none;">
+        <h2>Welcome!</h2>
+        <p>Please enter your Google Maps API Key to start.</p>
+        <input type="text" id="api-key-input" placeholder="Paste API Key here...">
+        <button id="submit-api-key" class="btn">Load Map</button>
+    </div>
+
+    <!-- UI Container (Left Sidebar) 
+         Contains the game dashboard including stats, controls, and history log. -->
+    <div id="ui-container" class="hidden">
+
+        <!-- Header: Displays game title and live statistics -->
+        <div class="ui-header">
+            <h1>CSUN Scout</h1>
+            <div class="stat-box"><strong>Correct:</strong> <span id="score-display">0</span></div>
+            <div class="stat-box"><strong>Points:</strong> <span id="points-display">0</span></div>
+            <div class="stat-box"><strong>Round:</strong> <span id="round-display">0</span> / 5</div>
+            <div class="stat-box"><strong>Time:</strong> <span id="timer-display">60</span>s</div>
+            <div class="stat-box" style="font-size:0.85rem; color:#888;">High Score: <span
+                    id="high-score-display">0</span></div>
+        </div>
+
+        <!-- Content Area: Active game prompts and buttons -->
+        <div class="ui-content">
+            <div id="target-section">
+                <span>Find Location:</span>
+                <strong id="target-location">...</strong>
+                <p style="margin-bottom:0; font-size:0.85rem; color:#666; margin-top:5px;">Double-click the map!</p>
+            </div>
+
+            <button id="start-btn" class="btn">Start Game</button>
+            <button id="end-early-btn" class="btn hidden" style="background-color:#555;">Quit Game</button>
+
+            <!-- API Key Reset Link for troubleshooting -->
+            <div style="margin-top:15px; text-align:center;">
+                <a href="#" id="reset-key-link" style="font-size:0.75rem; color:#999; text-decoration:none;">Reset API
+                    Key</a>
+            </div>
+
+            <!-- Game History Log: Shows previous guesses and feedback -->
+            <div id="game-log">
+                <!-- Log entries will appear here dynamically via jQuery -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Container (Right Side) 
+         This div holds the Google Map instance. 
+         It initially displays a loading message until the API is ready. -->
+    <div id="map">
+        <div style="text-align:center; padding-top:50px; color:#555;">
+            <h2>Loading Map...</h2>
+            <p>If this persists, check your internet connection or API Key.</p>
+        </div>
+    </div>
+
+    <!-- Feedback Modal (Absolute Top Right) -->
+    <div id="feedback-modal">
+        <h3 id="feedback-title" style="margin-top:0;">Correct!</h3>
+        <p id="feedback-message">You found it!</p>
+        <button id="next-btn" class="btn">Next Location</button>
+    </div>
+
+    <!-- JS Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>
